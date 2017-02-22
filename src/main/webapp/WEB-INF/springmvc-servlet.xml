@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <bean id="simpleUrlHandlerMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+        <property name="mappings">
+            <props>
+                <prop key="/hotword.do">HotWordController</prop>
+                <prop key="/index.do">HotWordController</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="HotWordController" class="com.sohu.mrd.hotword.controller.HotWordController">
+        <!--
+            <property name="helloManager" ref="helloManager" />
+        -->
+    </bean>
+
+</beans>
