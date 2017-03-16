@@ -6,14 +6,10 @@ package com.sohu.mrd.hotword.util;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
-/**
- * ����С���������topN����n����ʱ������
- * */
 public class SimpleTopNTool {
 
     public static class SortElement{
-        //����countֵ����
+
         private long count = 0;
         private Object val = null;
 
@@ -41,7 +37,7 @@ public class SimpleTopNTool {
 
     public SimpleTopNTool(int n) {
         capacity = n;
-        minHeapArr = new SortElement[n + 1];//������Ԫ�ز�ʹ��
+        minHeapArr = new SortElement[n + 1];
         clear();
     }
 
@@ -76,7 +72,7 @@ public class SimpleTopNTool {
 
     }
 
-    //�Ѷ��滻�����µ�����
+
     private void siftDown(){
 
         int cur = 1;
@@ -88,7 +84,7 @@ public class SimpleTopNTool {
         if (rIndex<= size&&minHeapArr[rIndex].getCount()<minHeapArr[lIndex].getCount()){
             lIndex=rIndex;
         }
-        //while�ж������ſ�����ѭ���ڲ���һ���жϣ������˳�ѭ��
+
         while(lIndex <=capacity&&minHeapArr[lIndex].getCount()<se.getCount()){
             minHeapArr[cur]=minHeapArr[lIndex];
             cur = lIndex;

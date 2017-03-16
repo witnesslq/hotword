@@ -10,9 +10,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * User: zhangsuozhu
- * Date: 13-9-17
- * Time: 下午4:24
+ * Created by yonghongli on 2016/8/4.
  */
 public class RedisPool {
     private static final Logger log = LoggerFactory.getLogger(RedisPool.class);

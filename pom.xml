@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sohu.mrd</groupId>
-    <artifactId>hot-word</artifactId>
+    <artifactId>hotword</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>hot-word</name>
+    <name>hotword</name>
     <url>http://maven.apache.org</url>
     <repositories>
         <repository>
@@ -23,7 +23,22 @@
             <id>dp-nexus-snapshots</id>
             <url>http://svn.k.sohu.com/nexus/content/repositories/snapshots</url>
         </repository>
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Public Repository</name>
+            <url>http://svn.k.sohu.com/nexus/content/groups/public</url>
+        </repository>
+        <repository>
+            <id>nexus-snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>http://svn.k.sohu.com/nexus/content/groups/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>interval:180</updatePolicy>
+            </snapshots>
+        </repository>
     </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -76,7 +91,7 @@
     </profiles>
 
     <build>
-        <finalName>hot-word</finalName>
+        <finalName>search-hot-word</finalName>
 
         <plugins>
             <plugin>
@@ -87,7 +102,7 @@
                     <stopKey>stop</stopKey>
                     <stopPort>5599</stopPort>
                     <webAppConfig>
-                        <contextPath>/</contextPath>
+                        <contextPath>/hotword</contextPath>
                     </webAppConfig>
                     <scanIntervalSeconds>10</scanIntervalSeconds>
                     <connectors>
@@ -184,7 +199,17 @@
             <artifactId>redis-client</artifactId>
 
             <version>1.0.1</version>
+            <exclusions>
 
+                <exclusion>
+                    <artifactId>slf4j-log4j12</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
@@ -400,6 +425,16 @@
             <version>1.2</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.ansj/ansj_seg -->
+        <dependency>
+            <groupId>org.ansj</groupId>
+            <artifactId>ansj_seg</artifactId>
+            <version>5.1.1</version>
+        </dependency>
+
+
     </dependencies>
+
+
 
 </project>

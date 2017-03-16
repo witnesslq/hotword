@@ -1,12 +1,13 @@
 package com.sohu.mrd.hotword.controller;
 
 import com.sohu.mrd.hotword.service.GetHotWordRedisDate;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import com.sohu.mrd.hotword.util.WordFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.text.SimpleDateFormat;
 import java.util.Map;
 
 
@@ -15,25 +16,30 @@ import java.util.Map;
  * 
  */
 @Controller
+@RequestMapping(value = "/search")
 public class HotWordController {
-	/*
-	 * private HelloManager helloManager;
-	 * 
-	 * public void setHelloManager(HelloManager helloManager) {
-	 * this.helloManager = helloManager; }
+	/**
+	 * Created by yonghongli on 2016/8/4.
 	 */
+
+	static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-ddHH");
+
 	@RequestMapping(value = "/hotword.do")
-		 public ModelAndView handleRequest(String dataHour,int topN,Model model) throws Exception {
+    @ResponseBody
+	public String handleRequest() throws Exception {
+		String date = sdf.format(System.currentTimeMillis());
 
-		Map<String,Integer> h= GetHotWordRedisDate.getGetRedisDate(dataHour, topN);
-		model.addAttribute("h",h);
-		return new ModelAndView("hotword");
+		Map<String,Integer> h= GetHotWordRedisDate.getGetRedisDate(date, 20);
+		if(h.size()!=0){
+            h= WordFilter.filterSex(h);
+            return StringUtils.join(h.keySet(),",");
+        }else {
+            return "";
+        }
+
+		//return StringUtils.join(h,",");
 	}
 
-	@RequestMapping(value = "/index.do")
-	public ModelAndView handleRequest() throws Exception {
 
-		return new ModelAndView("index");
-	}
 
 }
