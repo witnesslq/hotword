@@ -7,8 +7,7 @@ import org.apache.log4j.Logger;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * @author Jin Guopan
- * @creation 2016年12月8日 分词的帮助类
+ * Created by yonghongli on 2017/3/16.
  */
 public class SegmentKit{
 	private static  Logger LOG = Logger.getLogger(SegmentKit.class);
