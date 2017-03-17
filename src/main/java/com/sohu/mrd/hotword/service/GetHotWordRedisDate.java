@@ -55,7 +55,7 @@ public class GetHotWordRedisDate {
             }
 
             for (SimpleTopNTool.SortElement ele : utl.getTopN()) {
-                result.put(ele.getVal().toString().replace(",","").replaceAll("[\\pP°Æ°Ø°∞°±| \t|°°]", ""), (int) ele.getCount());
+                result.put(ele.getVal().toString().replace(",","").replaceAll("[\\pP‚Äò‚Äô‚Äú‚Äù| \t|„ÄÄ]", ""), (int) ele.getCount());
             }
         } catch (Exception e) {
             e.printStackTrace();
